@@ -21,6 +21,3 @@ Page 4:
 The last page will thank you for using the application.
 1. You can go back by pressing the “back” button
 2. Or you can go back to the beginning, by pressing “back to start” button
-
-Link for the Video:
-https://lut-my.sharepoint.com/:v:/g/personal/nardos_solomon_hagos_student_lut_fi/Ecz8pfWJbz1IkI52Rneu0WEB-1s4iDVt62ARKPzvIvz_Lg?e=7Pu1pb&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D
