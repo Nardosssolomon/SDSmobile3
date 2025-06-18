@@ -9,8 +9,8 @@
 
     <Button
         android:id="@+id/nextpageButton2"
-        android:layout_width="93dp"
-        android:layout_height="36dp"
+        android:layout_width="92dp"
+        android:layout_height="46dp"
         android:text="Next "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

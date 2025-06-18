@@ -12,8 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.graphics.Color;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private ArrayList<String> historyList = new ArrayList<>();  // Historia tallennetaan tähän
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        String name = getIntent().getStringExtra("username");
+        TextView greetingTextView = findViewById(R.id.greetingTextView);
+        if (name != null && !name.isEmpty()) {
+            greetingTextView.setText("Hello " + name + "!");
+        }
 
         Button addButton = (Button)findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +48,16 @@ public class MainActivity extends AppCompatActivity {
                 int result = num1 + num2;
 
                 ResultTextView.setText(result + "");
+                historyList.add(num1 + " + " + num2 + " = " + result);
+
+                // Antaa värit luvuille
+                if (result > 0) {
+                    ResultTextView.setTextColor(Color.GREEN);// jos pos, väri vihreä
+                } else if (result < 0) {
+                    ResultTextView.setTextColor(Color.RED);// jos neg, väri punainen
+                } else {
+                    ResultTextView.setTextColor(Color.BLACK);
+                }
             }
         });
 
@@ -46,15 +65,25 @@ public class MainActivity extends AppCompatActivity {
         minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText firstNumEditText = (EditText)findViewById(R.id.firstNumEditText);
-                EditText secondNumEditText = (EditText)findViewById(R.id.secondNumEditText);
-                TextView ResultTextView = (TextView)findViewById(R.id.ResultTextView);
+                EditText firstNumEditText = (EditText) findViewById(R.id.firstNumEditText);
+                EditText secondNumEditText = (EditText) findViewById(R.id.secondNumEditText);
+                TextView ResultTextView = (TextView) findViewById(R.id.ResultTextView);
 
                 int num1 = Integer.parseInt(firstNumEditText.getText().toString());
                 int num2 = Integer.parseInt(secondNumEditText.getText().toString());
                 int result = num1 - num2;
 
                 ResultTextView.setText(result + "");
+                historyList.add(num1 + " - " + num2 + " = " + result);
+
+                // Antaa värit luvuille
+                if (result > 0) {
+                    ResultTextView.setTextColor(Color.GREEN);// jos pos, väri vihreä
+                } else if (result < 0) {
+                    ResultTextView.setTextColor(Color.RED);// jos neg, väri punainen
+                } else {
+                    ResultTextView.setTextColor(Color.BLACK);
+                }
             }
         });
 
@@ -71,6 +100,15 @@ public class MainActivity extends AppCompatActivity {
                 int result = num1 * num2;
 
                 ResultTextView.setText(result + "");
+                historyList.add(num1 + " * " + num2 + " = " + result);
+                // Antaa värit luvuille
+                if (result > 0) {
+                    ResultTextView.setTextColor(Color.GREEN);// jos pos, väri vihreä
+                } else if (result < 0) {
+                    ResultTextView.setTextColor(Color.RED);// jos neg, väri punainen
+                } else {
+                    ResultTextView.setTextColor(Color.BLACK);
+                }
             }
         });
 
@@ -88,17 +126,30 @@ public class MainActivity extends AppCompatActivity {
                 if (num2 != 0) {
                     double result = num1 / num2;
                     ResultTextView.setText(String.valueOf(result));
+                    historyList.add(num1 + " / " + num2 + " = " + result);
+                    // Antaa värit luvuille
+                    if (result > 0) {
+                        ResultTextView.setTextColor(Color.GREEN);// jos pos, väri vihreä
+                    } else if (result < 0) {
+                        ResultTextView.setTextColor(Color.RED);// jos neg, väri punainen
+                    } else {
+                        ResultTextView.setTextColor(Color.BLACK);
+                    }
                 } else {
                     ResultTextView.setText("Error: divide by 0");
+                    historyList.add(num1 + " / " + num2 + " = " + " = Error: divide by 0");
                 }
             }
         });
+
 
         Button NextPageButton = (Button)findViewById(R.id.NextPageButton);
         NextPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
+                startIntent.putStringArrayListExtra("history", historyList);  // siirretään historia
+                //käytin apuna tämän ymmärtämiseen AI sekä tätä sivustoa https://stackoverflow.com/questions/4030115/how-to-pass-arraylist-using-putstringarraylistextra
                 startActivity(startIntent);
             }
         });

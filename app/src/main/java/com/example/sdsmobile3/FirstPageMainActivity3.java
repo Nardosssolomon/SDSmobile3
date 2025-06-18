@@ -36,7 +36,7 @@ public class FirstPageMainActivity3 extends AppCompatActivity {
                 if (!name.isEmpty()) {
                     welcomeTextView.setText("Welcome " + name + "!\nIn this application you will be calculating :)\n Click 'next' to continue.");
                 } else {
-                    welcomeTextView.setText("Welcome!\nIn this application you will be calculating :)\n Click 'next' to continue.");
+                    welcomeTextView.setText("Welcome!\nIn this application you will be calculating :)\nClick 'next' to continue.");
 
                 }
             }
@@ -46,7 +46,9 @@ public class FirstPageMainActivity3 extends AppCompatActivity {
         nextpageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String name = nameEditText.getText().toString().trim(); //HAKEE NIMEN
                 Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startIntent.putExtra("username",name); //lähetä nimi mainactivityyn
                 startActivity(startIntent);
 
             }
